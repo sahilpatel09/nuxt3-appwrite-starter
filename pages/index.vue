@@ -3,4 +3,6 @@
         Hello
     </div>
   </template>
-  
+  <script setup>
+    // const data = getS
+    </script>
