@@ -60,34 +60,20 @@ export async function logOut(){
     return result
 }
 
-export function checkUserStatus() {
-    // {
-    //     "$id": "665a987e6e9ca63d361c",
-    //     "$createdAt": "2024-06-01T03:41:50.475+00:00",
-    //     "$updatedAt": "2024-06-01T03:41:50.475+00:00",
-    //     "name": "Hella",
-    //     "registration": "2024-06-01T03:41:50.453+00:00",
-    //     "status": true,
-    //     "labels": [],
-    //     "passwordUpdate": "2024-06-01T03:41:50.453+00:00",
-    //     "email": "hella@gmail.com",
-    //     "phone": "",
-    //     "emailVerification": false,
-    //     "phoneVerification": false,
-    //     "mfa": false,
-    //     "prefs": {},
-    //     "targets": [
-    //       {
-    //         "$id": "665a987e83243144161c",
-    //         "$createdAt": "2024-06-01T03:41:50.537+00:00",
-    //         "$updatedAt": "2024-06-01T03:41:50.537+00:00",
-    //         "name": "",
-    //         "userId": "665a987e6e9ca63d361c",
-    //         "providerId": null,
-    //         "providerType": "email",
-    //         "identifier": "hella@gmail.com"
-    //       }
-    //     ],
-    //     "accessedAt": "2024-06-01T03:41:50.453+00:00"
-    //   }
+export function checkUserStatus(userLoginRes) {
+    if(userLoginRes.emailVerification){
+        return true
+    }
+    return false
 }
+
+export async function userEmailVerification(){
+    const result = await account.createVerification('http://localhost');
+    return result
+}
+
+export async function updateUserEmailVerification(userId: string, secret: string){
+    const result = await account.updateVerification(userId, secret);
+    return result
+}
+

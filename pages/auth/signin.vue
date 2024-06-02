@@ -30,9 +30,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
 const email = ref('')
 const password = ref('')
 const error = ref('')
@@ -51,7 +48,11 @@ const handleSubmit = async () => {
         console.log("DATA ", response, response.$id)
         if (response.$id) {
             console.log("Account Found: ", response)
-            navigateTo('/dashboard')
+            if(!checkUserStatus(response)){
+                navigateTo('/auth/verification')                
+            }else{
+                navigateTo('/dashboard')
+            }
         }
     } catch (e) {
         error.value = 'Failed to sign up. Please try again.'
