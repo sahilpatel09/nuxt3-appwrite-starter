@@ -2,8 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt'
   ],
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
   runtimeConfig: {
     public: {
       backendAPIBase: process.env.APPWRITE_CLOUD_BASE_URL,
